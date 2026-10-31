@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+  Ledgerly design tokens (from the "Ledgerly Dashboard" artifact).
+  Dark-only theme. Usage examples:
+    bg-bg  bg-surface  border-line  text-fg  text-muted  text-accent
+    bg-accent-soft  text-warning  bg-danger-soft  text-kpi  rounded-card
+*/
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts (variables come from next/font in app/layout.js) */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Surfaces */
+  --color-bg: #0a0b0d; /* page */
+  --color-sidebar: #0d0f12; /* sidebar, segmented control track */
+  --color-surface: #111317; /* cards, inputs, buttons */
+  --color-raised: #1e2228; /* avatars, active segment, progress track */
+
+  /* Borders & dividers */
+  --color-line: #1e2228; /* card / sidebar border */
+  --color-line-input: #23272e; /* input, icon button, secondary button */
+  --color-line-kbd: #2a2f37; /* keyboard hint */
+  --color-divider: #1a1d22; /* table rows, list rows, thin tracks */
+
+  /* Text */
+  --color-fg: #eceef1; /* default text */
+  --color-fg-strong: #ffffff; /* active nav, hover */
+  --color-fg-soft: #c9ced6; /* links, invoice id, icon buttons */
+  --color-muted: #9ba3ae; /* secondary text */
+  --color-subtle: #7d8692; /* captions, axis labels, placeholders */
+
+  /* Accent (default green; swap the value to re-theme) */
+  --color-accent: #34d399;
+  --color-accent-ink: #04130d; /* text on accent backgrounds */
+  --color-accent-soft: rgb(52 211 153 / 0.12); /* nav active, Paid badge */
+  --color-accent-chip: rgb(52 211 153 / 0.14); /* KPI chips */
+  --color-accent-bar: rgb(52 211 153 / 0.22); /* inactive chart bars */
+
+  /* Status: unpaid / warning */
+  --color-warning: #fbbf24; /* dot, segment */
+  --color-warning-fg: #fcd34d; /* badge text */
+  --color-warning-soft: rgb(251 191 36 / 0.12);
+
+  /* Status: overdue / danger */
+  --color-danger: #f87171;
+  --color-danger-fg: #fca5a5;
+  --color-danger-soft: rgb(248 113 113 / 0.12);
+
+  /* Font sizes (Tailwind defaults text-xs=12, text-sm=14, text-base=16, text-2xl=24 still apply) */
+  --text-2xs: 11px; /* axis labels, section eyebrow, kbd */
+  --text-13: 13px; /* subtitles, links, small buttons */
+  --text-title: 26px; /* page heading */
+  --text-kpi: 30px; /* KPI numbers */
+
+  /* Radii */
+  --radius-chip: 6px; /* kbd, progress bar, chart bar top */
+  --radius-control: 10px; /* inputs, buttons, nav items */
+  --radius-icon: 9px; /* logo, client avatars */
+  --radius-panel: 14px; /* sidebar goal card */
+  --radius-card: 16px; /* main cards */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
 }
